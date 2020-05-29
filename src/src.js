@@ -10,17 +10,15 @@ calcBtnsEl.addEventListener('click', (ev) => {
         const attrVal = ev.target.getAttribute('data-num');
         activeNum1.innerText += attrVal;
     }
-    
     if ((ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '+') || 
         (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '-') || 
         (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '/') || 
         (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '*')) {
             screen.classList.remove('displaynone');
-            activeNum1 = activeNum2;
+            activeNum1 = activeNum2;  //document.getElementById('num2');
             const attrSym = ev.target.getAttribute('data-sign');
             activeSign.innerText += attrSym;
         }
-
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '=') {
         let num1Val = +document.getElementById('num1').innerText;
         let num2Val = +document.getElementById('num2').innerText;
@@ -39,16 +37,15 @@ calcBtnsEl.addEventListener('click', (ev) => {
         activeNum2.innerText = '';
         activeSign.innerText = '';
     }
-    
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'C') {
+        document.querySelector('#screen #num2').innerText = '';
         document.querySelector('#screen #num1').innerText = '';
         document.querySelector('#screen #sign').innerText = '';
-        document.querySelector('#screen #num2').innerText = '';
-        document.querySelector('#result span').innerText = ''; 
+        document.querySelector('#result span').innerText = '';
+        activeNum1 = document.getElementById('num1');
     }
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'CE') {
         document.querySelector('#screen #sign').innerText = '';
         document.querySelector('#screen #num2').innerText = ''; 
     }  
 })
-    
