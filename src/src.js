@@ -9,6 +9,7 @@ calcBtnsEl.addEventListener('click', (ev) => {
     if (ev.target.nodeName === 'BUTTON' && !ev.target.dataset.sign) {
         const attrVal = ev.target.getAttribute('data-num');
         activeNum1.innerText += attrVal;
+        screen.classList.remove('displaynone');
     }
     if ((ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '+') || 
         (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '-') || 
