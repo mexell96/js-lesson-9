@@ -4,7 +4,7 @@ let activeSign = document.getElementById('sign');
 let activeNum2 = document.getElementById('num2');
 let screen = document.getElementById('screen');
 let page = document.querySelector('.page');
-let themeButton = document.querySelector('.theme-button');
+
 
 calcBtnsEl.addEventListener('click', (ev) => {
     if (ev.target.nodeName === 'BUTTON' && !ev.target.dataset.sign) {
@@ -30,7 +30,8 @@ calcBtnsEl.addEventListener('click', (ev) => {
             }   else if (activeSign.innerText === '-') {
                 var result = num1Val - num2Val;
             }   else if (activeSign.innerText === '/') {
-                var result = num1Val / num2Val;
+                var resultWithoutRounding = num1Val / num2Val;
+                var result = resultWithoutRounding.toFixed(3);
             }   if (activeSign.innerText === '*') {
                 var result = num1Val * num2Val;
             }   
@@ -45,6 +46,7 @@ calcBtnsEl.addEventListener('click', (ev) => {
         document.querySelector('#screen #sign').innerText = '';
         document.querySelector('#result span').innerText = '';
         activeNum1 = document.getElementById('num1');
+        screen.classList.add('displaynone');
     }
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'CE') {
         document.querySelector('#screen #sign').innerText = '';
@@ -53,5 +55,9 @@ calcBtnsEl.addEventListener('click', (ev) => {
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'lightDark') {
         page.classList.toggle('light-theme');
         page.classList.toggle('dark-theme');
+    }
+    if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'bigSmall') {
+        page.classList.toggle('small-theme');
+        page.classList.toggle('big-theme');
     }
 })
