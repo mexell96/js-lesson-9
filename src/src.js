@@ -17,14 +17,15 @@ calcBtnsEl.addEventListener('click', (ev) => {
         (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '/') || 
         (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '*')) {
             screen.classList.remove('displaynone');
-            activeNum1 = activeNum2;  //document.getElementById('num2');
+            mistake.classList.add('displaynone');
+            activeNum1 = activeNum2;
             const attrSym = ev.target.getAttribute('data-sign');
             activeSign.innerText += attrSym;
-        }
+        } 
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === '=') {
         let num1Val = +document.getElementById('num1').innerText;
         let num2Val = +document.getElementById('num2').innerText;
-        screen.classList.add('displaynone');
+        screen.classList.remove('displaynone');
             if (activeSign.innerText === '+') {
                 var result = num1Val + num2Val;
             }   else if (activeSign.innerText === '-') {
@@ -38,8 +39,19 @@ calcBtnsEl.addEventListener('click', (ev) => {
         document.querySelector('#result span').innerText = result;
         document.querySelector('#screen span').innerText = result;
         activeNum2.innerText = '';
-        activeSign.innerText = '';
+        activeSign.innerText = '';  
     }
+    
+    var numberOfSymbols = document.querySelector('#result span').innerText.length;
+    var noneSymbols = '0';
+    calcBtnsEl.addEventListener('click', (ev) => {
+        if ((numberOfSymbols > noneSymbols) && ev.target.nodeName === 'BUTTON' && ev.target.dataset.num && document.getElementById('sign').innerText === '') {
+            document.querySelector('#mistake').innerText = 'Укажите знак!';
+            mistake.classList.remove('displaynone');
+            document.querySelector('#screen #sign').innerText = '';
+            document.querySelector('#screen #num2').innerText = '';
+        }
+    })
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'C') {
         document.querySelector('#screen #num2').innerText = '';
         document.querySelector('#screen #num1').innerText = '';
@@ -47,10 +59,12 @@ calcBtnsEl.addEventListener('click', (ev) => {
         document.querySelector('#result span').innerText = '';
         activeNum1 = document.getElementById('num1');
         screen.classList.add('displaynone');
+        mistake.classList.add('displaynone');
     }
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'CE') {
         document.querySelector('#screen #sign').innerText = '';
         document.querySelector('#screen #num2').innerText = ''; 
+        mistake.classList.add('displaynone');
     }  
     if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'lightDark') {
         page.classList.toggle('light-theme');
