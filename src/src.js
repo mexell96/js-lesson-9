@@ -3,7 +3,8 @@ let activeNum1 = document.getElementById('num1');
 let activeSign = document.getElementById('sign');
 let activeNum2 = document.getElementById('num2');
 let screen = document.getElementById('screen');
-
+let page = document.querySelector('.page');
+let themeButton = document.querySelector('.theme-button');
 
 calcBtnsEl.addEventListener('click', (ev) => {
     if (ev.target.nodeName === 'BUTTON' && !ev.target.dataset.sign) {
@@ -49,4 +50,8 @@ calcBtnsEl.addEventListener('click', (ev) => {
         document.querySelector('#screen #sign').innerText = '';
         document.querySelector('#screen #num2').innerText = ''; 
     }  
+    if (ev.target.nodeName === 'BUTTON' && ev.target.dataset.sign === 'lightDark') {
+        page.classList.toggle('light-theme');
+        page.classList.toggle('dark-theme');
+    }
 })
